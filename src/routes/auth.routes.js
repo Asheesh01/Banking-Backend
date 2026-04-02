@@ -1,7 +1,9 @@
 const express=require('express')
+const AuthController=require('../controller/auth.controller')
+const router=express.Router()
 
-const Router=express.Router()
+router.post('/register',AuthController.userRegisterController)
+router.post('/login',AuthController.userLogin)
 
 
-
-module.exports=Router
+module.exports=router   
