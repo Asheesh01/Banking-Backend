@@ -1,6 +1,7 @@
 const userModel=require('../models/user.model')
 const bcrypt=require('bcrypt')
 const jsonwebtoken=require('jsonwebtoken')
+const emailService=require('../services/email.services')
 const dotenv=require('dotenv')
 dotenv.config()
 async function userRegisterController(req,res){
@@ -33,6 +34,7 @@ async function userRegisterController(req,res){
      },
     token
     })
+    await emailService.sendRegistrationEmail(user.email,user.name)
 }
     catch(error){
         res.status(500).json({
